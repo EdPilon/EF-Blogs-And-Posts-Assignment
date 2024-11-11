@@ -10,6 +10,11 @@ public class DataContext : DbContext
     this.Blogs.Add(blog);
     this.SaveChanges();
   }
+public void AddPost(Post post)
+  {
+    this.Posts.Add(post);
+    this.SaveChanges();
+  }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
@@ -20,6 +25,7 @@ public class DataContext : DbContext
     // *******************************************************************
     // ## last 2 digits of CRN
     // XXX your initials
-    optionsBuilder.UseSqlServer(@"");
+    string SQLLogIn = File.ReadAllText(@"SQLLogIn.txt");
+    optionsBuilder.UseSqlServer(@SQLLogIn);
   }
 }
